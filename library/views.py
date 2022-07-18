@@ -6,9 +6,10 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 
 from .models import Books,Details
-
+from django.http import HttpResponse
 # Create your views here.
-
+def home(request):
+    return HttpResponse("<H1>Hello api</H1>")
 class AddBook(APIView):
     permission_classes = (IsAuthenticated,)
 

@@ -4,6 +4,7 @@ from .api import RegisterApi
 from . import views
 urlpatterns = [
 
+    path('',views.home,name="home")
     path('api/register', RegisterApi.as_view(),name="register"),
 
     path('api/addbook',views.AddBook.as_view(), name='AddBook'),
