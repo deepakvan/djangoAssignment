@@ -194,7 +194,7 @@ class BorrowBook(APIView):
                 content = {'ISBN_Code': 'Required'}
                 return Response(content)
         else:
-            content = {'message': 'you have no permission to Delete book'}
+            content = {'message': 'you have no permission to Borrow book'}
             return Response(content)
 
 
@@ -229,7 +229,7 @@ class ReturnBook(APIView):
                 content = {'ISBN_Code': 'Required'}
                 return Response(content)
         else:
-            content = {'message': 'you have no permission to Delete book'}
+            content = {'message': 'you have no permission to Return book'}
             return Response(content)
 
 
