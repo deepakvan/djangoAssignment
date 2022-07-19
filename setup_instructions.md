@@ -8,6 +8,6 @@ go to the directory 'djangoAssignment' and run the command
 
 open postman to make requests or use swagger.
 
-> http://localhost:8000/
+>http://localhost:8000/
 
 > http://localhost:8000/swagger
