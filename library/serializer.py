@@ -7,9 +7,14 @@ from django.contrib.auth.hashers import make_password # Register serializer
 from .models import Books
 
 class RegisterSerializer(serializers.ModelSerializer):
+    role_type = serializers.CharField()
+
+    def create(self, validated_data):
+        print(direction=validated_data['role_type'])
+
     class Meta:
         model = User
-        fields = ('id','username','password','first_name', 'last_name')
+        fields = ('id','username','password','first_name', 'last_name',"role_type")
         extra_kwargs = {
             'password':{'write_only': True},
         }

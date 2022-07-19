@@ -149,7 +149,7 @@ class ViewBook(generics.GenericAPIView):
             return Response(content)
 
 
-class ViewAllBook(generics.GenericAPIView):
+class ViewAllBook(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -392,7 +392,7 @@ class ViewMember(generics.GenericAPIView):
             return Response(content)
 
 
-class ViewAllMember(generics.GenericAPIView):
+class ViewAllMember(APIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
