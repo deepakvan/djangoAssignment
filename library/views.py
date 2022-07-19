@@ -1,5 +1,6 @@
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.models import User
+from rest_framework import generics
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -7,10 +8,13 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import Books,Details
 from django.http import HttpResponse
+from .serializer import *
 # Create your views here.
 def home(request):
     return HttpResponse("<H1>Hello api</H1>")
-class AddBook(APIView):
+
+class AddBook(generics.GenericAPIView):
+    serializer_class = AddBookSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -44,7 +48,8 @@ class AddBook(APIView):
             content = {'message': 'you have no permission to add book', 'role_type': user_data.details.role_type}
             return Response(content)
 
-class DeleteBook(APIView):
+class DeleteBook(generics.GenericAPIView):
+    serializer_class = ISBNBookSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -74,7 +79,8 @@ class DeleteBook(APIView):
             return Response(content)
 
 
-class UpdateBook(APIView):
+class UpdateBook(generics.GenericAPIView):
+    serializer_class = AddBookSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -112,7 +118,8 @@ class UpdateBook(APIView):
             return Response(content)
 
 
-class ViewBook(APIView):
+class ViewBook(generics.GenericAPIView):
+    serializer_class = ISBNBookSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -142,7 +149,7 @@ class ViewBook(APIView):
             return Response(content)
 
 
-class ViewAllBook(APIView):
+class ViewAllBook(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -163,7 +170,8 @@ class ViewAllBook(APIView):
             return Response(content)
 
 
-class BorrowBook(APIView):
+class BorrowBook(generics.GenericAPIView):
+    serializer_class = ISBNBookSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -198,7 +206,8 @@ class BorrowBook(APIView):
             return Response(content)
 
 
-class ReturnBook(APIView):
+class ReturnBook(generics.GenericAPIView):
+    serializer_class = ISBNBookSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -233,7 +242,8 @@ class ReturnBook(APIView):
             return Response(content)
 
 
-class AddMember(APIView):
+class AddMember(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -268,7 +278,8 @@ class AddMember(APIView):
             return Response(content)
 
 
-class DeleteMember(APIView):
+class DeleteMember(generics.GenericAPIView):
+    serializer_class = DeleteMemberSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -309,7 +320,8 @@ class DeleteMember(APIView):
             return Response(content)
 
 
-class UpdateMember(APIView):
+class UpdateMember(generics.GenericAPIView):
+    serializer_class = RegisterSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -348,7 +360,8 @@ class UpdateMember(APIView):
             return Response(content)
 
 
-class ViewMember(APIView):
+class ViewMember(generics.GenericAPIView):
+    serializer_class = ViewMemberSerializer
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):
@@ -379,7 +392,7 @@ class ViewMember(APIView):
             return Response(content)
 
 
-class ViewAllMember(APIView):
+class ViewAllMember(generics.GenericAPIView):
     permission_classes = (IsAuthenticated,)
 
     def post(self, request):

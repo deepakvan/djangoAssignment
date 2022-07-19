@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password # Register serializer
+from .models import Books
 
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +27,32 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = '__all__'
+
+
+
+class AddBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Books
+        fields=('ISBN_Code','Book_Title','Book_Author', 'Publication_year','Status','Borrowed_By')
+
+
+class ISBNBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Books
+        fields=('ISBN_Code',)
+
+class UpdateBookSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Books
+        fields=('ISBN_Code','Book_Title','Book_Author', 'Publication_year','Status','Borrowed_By')
+
+class DeleteMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields=('username',)
+
+
+class ViewMemberSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('username',)

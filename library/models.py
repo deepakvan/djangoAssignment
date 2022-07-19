@@ -6,8 +6,8 @@ class Books(models.Model):
     Book_Title=models.CharField(max_length=200)
     Book_Author=models.CharField(max_length=200)
     Publication_year = models.IntegerField()
-    Status=models.CharField(max_length=50, default="Available")
-    Borrowed_By= models.CharField(max_length=200,default="")
+    Status=models.CharField(max_length=50, default="Available",null=True)
+    Borrowed_By= models.CharField(max_length=200,default="",null=True)
 
 
 
